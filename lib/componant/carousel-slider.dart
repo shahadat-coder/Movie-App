@@ -27,6 +27,6 @@ class _MovieCarouselState extends State<MovieCarousel> {
           },
         );
       }).toList(),
-    );;
+    );
   }
 }
