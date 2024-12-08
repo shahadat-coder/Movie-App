@@ -16,7 +16,7 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
   int selectedIndex = 0;
 
   final List<Widget> _screens = const [
-    MovieScreen(),
+    MovieScreen(movieList: [],),
     TVScreen(),
     ProfileScreen(),
   ];

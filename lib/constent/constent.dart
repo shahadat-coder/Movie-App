@@ -1,6 +1,5 @@
 
-
-const KmoviedbUrl = "https://api.themoviedb.org/3/movie/";
+const kmoviedbURL = "https://api.themoviedb.org/3/movie/";
 const ktvdbURL = "https://api.themoviedb.org/3/tv/";
 const kmoviedbImageURL = "https://image.tmdb.org/t/p/w300";
 const kpopular = 'popular';
@@ -12,3 +11,5 @@ const kairringToday = 'airing_today';
 const ksimilar = '/similar';
 const kvideos = '/videos';
 const kcredits = '/credits';
+
+
