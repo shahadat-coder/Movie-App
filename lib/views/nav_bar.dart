@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/views/movie_screen.dart';
+import 'package:movie_app/views/movie/movie_screen.dart';
 import 'package:movie_app/views/profile_screen.dart';
-import 'package:movie_app/views/tv_screen.dart';
+import 'package:movie_app/views/Tv/tv_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 
@@ -17,7 +17,7 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
 
   final List<Widget> _screens = const [
     MovieScreen(movieList: [],),
-    TVScreen(),
+    TVScreen(tvModel: [],),
     ProfileScreen(),
   ];
 
@@ -36,8 +36,8 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
         },
         items:  [
           SalomonBottomBarItem(
-            icon: Image.asset('assets/images/home.png',width: 25,height: 25,color: Colors.white,),
-            title: const Text("Home"),
+            icon: Image.asset('assets/images/movie.png',width: 25,height: 25,color: Colors.white,),
+            title: const Text("Movie"),
             selectedColor: Colors.white,
           ),
           SalomonBottomBarItem(
