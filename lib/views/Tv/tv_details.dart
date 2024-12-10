@@ -4,23 +4,23 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie_app/componant/bold_text.dart';
 import 'package:movie_app/componant/cast_page.dart';
 import 'package:movie_app/constent/constent.dart';
-import 'package:movie_app/model/movie_model.dart';
+import 'package:movie_app/model/tvModel.dart';
 import 'package:movie_app/model/video_model.dart';
 import 'package:movie_app/service/api-service.dart';
-import 'package:movie_app/views/movie/Movie_category.dart';
+import 'package:movie_app/views/Tv/Tv_Category.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-class MovieDetails extends StatefulWidget {
-  final MovieModel movieModel;
+class TvDetails extends StatefulWidget {
+  final TvModel tvModel;
 
-   MovieDetails({super.key, required this.movieModel});
+  TvDetails({super.key, required this.tvModel});
 
   @override
-  State<MovieDetails> createState() => _MovieDetailsState();
+  State<TvDetails> createState() => _TvDetailsState();
 }
 
-class _MovieDetailsState extends State<MovieDetails> {
+class _TvDetailsState extends State<TvDetails> {
 
   ApiService apiService = ApiService();
 
@@ -31,7 +31,7 @@ class _MovieDetailsState extends State<MovieDetails> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-          widget.movieModel.title ?? 'Unknown Title',
+          widget.tvModel.name ?? 'Unknown Title',
           style: const TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -65,11 +65,11 @@ class _MovieDetailsState extends State<MovieDetails> {
                         color: Colors.grey[800],
                         child: const Icon(Icons.broken_image, color: Colors.white, size: 50),
                       ),
-                      imageUrl: kmoviedbImageURL + (widget.movieModel.backdropPath ?? ''),
+                      imageUrl: kmoviedbImageURL + (widget.tvModel.backdropPath ?? ''),
                     ),
                   ),
 
-                  FutureBuilder(future: apiService.getVideo(widget.movieModel.id ?? 0,ProgramType.movie ),
+                  FutureBuilder(future: apiService.getVideo(widget.tvModel.id ?? 0,ProgramType.tv ),
                       builder: (context,snapshot){
 
                         if(snapshot.hasData){
@@ -91,12 +91,12 @@ class _MovieDetailsState extends State<MovieDetails> {
                           }
                         }
                         return const SizedBox();
-                  })
+                      })
                 ],
               ),
               const SizedBox(height: 10),
               Text(
-                widget.movieModel.title ?? 'Unknown Title',
+                widget.tvModel.name ?? 'Unknown Title',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -107,7 +107,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               Row(
                 children: [
                   RatingBarIndicator(
-                    rating: (widget.movieModel.voteAverage ?? 0) / 2, // Normalize to 0-5 scale
+                    rating: (widget.tvModel.voteAverage ?? 0) / 2, // Normalize to 0-5 scale
                     itemSize: 18,
                     itemCount: 5,
                     direction: Axis.horizontal,
@@ -117,7 +117,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     ),
                   ),
                   Text(
-                    widget.movieModel.voteAverage.toString(),
+                    widget.tvModel.voteAverage.toString(),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -127,21 +127,21 @@ class _MovieDetailsState extends State<MovieDetails> {
                   const SizedBox(width: 150),
                   Chip(
                     elevation: 5,
-                     backgroundColor: Colors.redAccent,
+                    backgroundColor: Colors.redAccent,
                     label: Text(
-                    widget.movieModel.releaseDate.toString(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w800,
+                      widget.tvModel.firstAirDate.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  ),
                   ),
                 ],
               ),
               const SizedBox(height: 15),
               Text(
-                widget.movieModel.overview.toString(),
+                widget.tvModel.overview.toString(),
                 style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 16,
@@ -153,17 +153,17 @@ class _MovieDetailsState extends State<MovieDetails> {
               const SizedBox(height: 10),
 
               SizedBox(
-                height: 140,
-                  child: CastPage(id: widget.movieModel.id!, type: ProgramType.movie)),
+                  height: 140,
+                  child: CastPage(id: widget.tvModel.id!, type: ProgramType.tv)),
 
               const SizedBox(height: 10),
-              const BoldText(title: 'Similar Movie',),
+              const BoldText(title: 'Similar Tv Program',),
               const SizedBox(height: 10,),
               SizedBox(
                 height: 200,
-                child: MovieCategory(
-                    movieType: MovieType.similar,
-                  movieId: widget.movieModel.id ?? 0,
+                child: TvCategory(
+                  tvType: TvType.similar,
+                  tvID: widget.tvModel.id ?? 0,
                 ),
               ),
             ],

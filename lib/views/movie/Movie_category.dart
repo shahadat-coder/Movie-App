@@ -5,7 +5,8 @@ import 'package:movie_app/service/api-service.dart';
 
 class MovieCategory extends StatefulWidget {
   final MovieType movieType;
-  const MovieCategory({super.key, required this.movieType});
+  final int? movieId;
+  const MovieCategory({super.key, required this.movieType, this.movieId=0});
 
   @override
   State<MovieCategory> createState() => _MovieCategoryState();
@@ -18,7 +19,7 @@ class _MovieCategoryState extends State<MovieCategory> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: apiService.getMovieData(widget.movieType),
+        future: apiService.getMovieData(widget.movieType,movieID: widget.movieId!),
         builder: (context, snapshot){
           if(snapshot.hasData) {
            List<MovieModel> movieList = snapshot.data ?? [];
