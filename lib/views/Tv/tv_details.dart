@@ -124,7 +124,7 @@ class _TvDetailsState extends State<TvDetails> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(width: 150),
+                  const SizedBox(width: 180),
                   Chip(
                     elevation: 5,
                     backgroundColor: Colors.redAccent,
